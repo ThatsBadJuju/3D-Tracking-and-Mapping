@@ -5,7 +5,7 @@ from mpl_toolkits.mplot3d import Axes3D
 
 
 
-
+# find a parabola from 3 points
 def calc_parabola(x1, y1, x2, y2, x3, y3):
     # y1 = a*x1*x1 + b*x1 + c
     # y2 = a*x2*x2 + b*x2 + c

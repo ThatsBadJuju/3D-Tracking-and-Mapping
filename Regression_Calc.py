@@ -7,6 +7,8 @@ from mpl_toolkits.mplot3d import Axes3D
 # x = [0, 1, 2, 3, 4, 5]
 # y = [0, 1, 2, 3, 4, 5]
 # t = [10, 11.5, 12.3, 12, 11.4, 10.8]
+
+# copy-pasted outlier-finding code (probably won't even use it)
 def is_outlier(points, thresh=3.5):
     """
     Returns a boolean array with True if points are outliers and False
@@ -36,6 +38,7 @@ def is_outlier(points, thresh=3.5):
     return modified_z_score > thresh
 
 
+# creates a 2d regression plot with curve of best fit (will switch to 3d eventually)
 def create_quad_regression_plot(t,y, end_time):
     figure = plt.figure()
     axes = figure.add_subplot()#111, projection='3d')
@@ -56,3 +59,21 @@ def create_quad_regression_plot(t,y, end_time):
 
     plt.show()
     return a, b, c
+
+def create_lin_regression_plot(t,y, end_time):
+    figure = plt.figure()
+    axes = figure.add_subplot()#111, projection='3d')
+
+    axes.scatter(t,y)
+    linear_regression = np.polyfit(t, y, 1)
+    m = linear_regression[0]
+    b = linear_regression[1]
+
+    x_plot = np.linspace(0, end_time)
+    #y = np.linspace(0, 5)
+    y_plot = m * x_plot + b
+
+    plt.plot(x_plot, y_plot)
+
+    plt.show()
+    return m, b
